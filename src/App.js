@@ -1,16 +1,13 @@
-import React, { useState } from "react";
-import { Counter } from "./features/counter/Counter";
+import React from "react";
 import "./App.css";
 import NameCard from "./components/NameCard";
 import QuestionCard from "./components/QuestionCard";
 import ResultCard from "./components/ResultCard";
+import { useSelector } from 'react-redux';
+import { selectCurrentCard } from './features/cardSwitcherSlice';
 
 function App() {
-  const [currentCard, setCurrentCard] = useState("name");
-
-  function cardSwitcher(card) {
-    setCurrentCard(card);
-  }
+  const currentCard = useSelector(selectCurrentCard);
   return (
     <>
       {currentCard === "name" && <NameCard></NameCard>}

@@ -7,6 +7,7 @@ import Container from "@mui/material/Container";
 import { makeStyles } from "@mui/styles";
 import { useDispatch, useSelector } from 'react-redux';
 import { setName, selectName } from '../features/namecard/nameSlice';
+import { gotoQuestion } from "../features/cardSwitcherSlice";
 
 const useStyles = makeStyles({
   container: {
@@ -29,6 +30,7 @@ function NameCard(props) {
   const name = useSelector(selectName);
 
   const handleChange = e => dispatch(setName(e.target.value));
+  const handleClick = () => dispatch(gotoQuestion());
 
   return (
     <Container className={classes.container}>
@@ -45,7 +47,7 @@ function NameCard(props) {
           />
         </CardContent>
         <CardActions>
-          <Button size="small">Take test</Button>
+          <Button size="small" onClick={handleClick}>Take test</Button>
         </CardActions>
       </Card>
     </Container>

@@ -7,6 +7,8 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Choice from "./Choice";
 import { useState } from "react";
+import { useDispatch } from 'react-redux';
+import { gotoResult } from "../features/cardSwitcherSlice";
 
 const useStyles = makeStyles({
   container: {
@@ -47,13 +49,30 @@ function NameCard(props) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userResultScore, setUserResultScore] = useState(0);
   const classes = useStyles();
-  const choiceList = shuffledChoices[currentQuestionIndex].map((choice) => {
-    return <Choice key={choice} onClick={submitAnswerHandler} value={choice}></Choice>;
+  const dispatch = useDispatch();
+  const choiceList = shuffledChoices[currentQuestionIndex]?.map((choice) => {
+    return (
+      <Choice
+        key={choice}
+        onClick={submitAnswerHandler}
+        value={choice}
+      ></Choice>
+    );
   });
 
-  function submitAnswerHandler (e) {
-    if (e.target.value === shuffledQuestions[currentQuestionIndex].correct) {setUserResultScore((prev)=>{return prev+1})}
-    setCurrentQuestionIndex((prev)=>{return prev+1})
+  function submitAnswerHandler(e) {
+    if (e.target.value === shuffledQuestions[currentQuestionIndex].correct) {
+      setUserResultScore((prev) => {
+        return prev + 1;
+      });
+    }
+    if (currentQuestionIndex < shuffledQuestions.length - 1) {
+      setCurrentQuestionIndex((prev) => {
+        return prev + 1;
+      });
+    } else {
+      dispatch(gotoResult());
+    }
   }
   return (
     <Container className={classes.container}>
@@ -67,7 +86,7 @@ function NameCard(props) {
                 color: "black",
               }}
             >
-              {shuffledQuestions[currentQuestionIndex].question}
+              {shuffledQuestions[currentQuestionIndex]?.question}
             </FormLabel>
             <RadioGroup aria-label="question" name="radio-buttons-group">
               {choiceList}
