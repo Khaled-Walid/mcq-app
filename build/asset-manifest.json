@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/mcq-app/build/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/mcq-app/build/static/js/main.6da2f088.chunk.js",
+    "main.js.map": "/mcq-app/build/static/js/main.6da2f088.chunk.js.map",
+    "runtime-main.js": "/mcq-app/build/static/js/runtime-main.ca61dc15.js",
+    "runtime-main.js.map": "/mcq-app/build/static/js/runtime-main.ca61dc15.js.map",
+    "static/js/2.fae2f2ca.chunk.js": "/mcq-app/build/static/js/2.fae2f2ca.chunk.js",
+    "static/js/2.fae2f2ca.chunk.js.map": "/mcq-app/build/static/js/2.fae2f2ca.chunk.js.map",
+    "index.html": "/mcq-app/build/index.html",
+    "static/css/main.6dea0f05.chunk.css.map": "/mcq-app/build/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.fae2f2ca.chunk.js.LICENSE.txt": "/mcq-app/build/static/js/2.fae2f2ca.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ca61dc15.js",
+    "static/js/2.fae2f2ca.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.6da2f088.chunk.js"
+  ]
+}
