@@ -1,18 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = 'name';
+const initialState = "name";
 
 export const cardSwitcherSlice = createSlice({
-  name: 'cardSwitcher',
+  name: "cardSwitcher",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     gotoQuestion() {
-      return 'question';
+      return "question";
     },
     gotoResult() {
-      return 'result';
-    }
+      return "result";
+    },
   },
 });
 

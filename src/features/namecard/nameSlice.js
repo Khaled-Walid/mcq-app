@@ -1,9 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = '';
+const initialState = "";
 
 export const nameSlice = createSlice({
-  name: 'name',
+  name: "name",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {

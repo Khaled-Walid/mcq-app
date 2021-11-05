@@ -7,9 +7,12 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Choice from "./Choice";
 import { useState, useRef } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { gotoResult } from "../features/cardSwitcherSlice";
-import { incrementScore, selectQuestions } from '../features/questioncard/questionSlice';
+import {
+  incrementScore,
+  selectQuestions,
+} from "../features/questioncard/questionSlice";
 
 const useStyles = makeStyles({
   container: {
@@ -39,25 +42,26 @@ function QuestionCard(props) {
   const questions = useSelector(selectQuestions);
   const shuffledQuestionsRef = useRef(shuffle(questions));
   const shuffledQuestions = shuffledQuestionsRef.current;
-  const shuffledChoicesRef = useRef(shuffledQuestions.map((question) => {
-    return shuffle(question.choices);
-  }));
+  const shuffledChoicesRef = useRef(
+    shuffledQuestions.map((question) => {
+      return shuffle(question.choices);
+    })
+  );
   const shuffledChoices = shuffledChoicesRef.current;
 
   const classes = useStyles();
   const dispatch = useDispatch();
   const choiceList = shuffledChoices[currentQuestionIndex]?.map((choice) => {
     return (
-      <Choice
-        key={choice}
-        onClick={submitAnswerHandler}
-        value={choice}
-      ></Choice>
+      <Choice key={choice} onClick={handleSubmitAnswer} value={choice}></Choice>
     );
   });
 
-  function submitAnswerHandler(e) {
-    if (e.target.value === shuffledQuestions[currentQuestionIndex].correct.toString()) {
+  function handleSubmitAnswer(e) {
+    if (
+      e.target.value ===
+      shuffledQuestions[currentQuestionIndex].correct.toString()
+    ) {
       dispatch(incrementScore());
     }
     if (currentQuestionIndex < shuffledQuestions.length - 1) {

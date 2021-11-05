@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   score: 0,
@@ -8,16 +8,16 @@ const initialState = {
     { question: "3 + 3 + 3 = ?", choices: [9, 18, 20, 22], correct: 9 },
     { question: "4 + 4 + 4 = ?", choices: [10, 12, 13, 14], correct: 12 },
     { question: "5 + 5 + 5 = ?", choices: [1, 15, 40, 200], correct: 15 },
-  ]
+  ],
 };
 
 export const questionSlice = createSlice({
-  name: 'questionCard',
+  name: "questionCard",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     incrementScore(state) {
-      state.score +=1 ;
+      state.score += 1;
     },
   },
 });

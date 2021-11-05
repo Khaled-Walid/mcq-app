@@ -5,8 +5,8 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
 import { makeStyles } from "@mui/styles";
-import { useDispatch, useSelector } from 'react-redux';
-import { setName, selectName } from '../features/namecard/nameSlice';
+import { useDispatch, useSelector } from "react-redux";
+import { setName, selectName } from "../features/namecard/nameSlice";
 import { gotoQuestion } from "../features/cardSwitcherSlice";
 
 const useStyles = makeStyles({
@@ -20,8 +20,8 @@ const useStyles = makeStyles({
     margin: "10% auto",
   },
   textField: {
-    width: "100%"
-  }
+    width: "100%",
+  },
 });
 
 function NameCard(props) {
@@ -29,13 +29,13 @@ function NameCard(props) {
   const dispatch = useDispatch();
   const name = useSelector(selectName);
 
-  const handleChange = e => dispatch(setName(e.target.value));
+  const handleChange = (e) => dispatch(setName(e.target.value));
   const handleClick = () => dispatch(gotoQuestion());
 
   return (
     <Container className={classes.container}>
       <Card className={classes.card}>
-        <CardContent >
+        <CardContent>
           <TextField
             id="outlined-basic"
             label="Name"
@@ -47,7 +47,9 @@ function NameCard(props) {
           />
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={handleClick}>Take test</Button>
+          <Button size="small" onClick={handleClick}>
+            Take test
+          </Button>
         </CardActions>
       </Card>
     </Container>

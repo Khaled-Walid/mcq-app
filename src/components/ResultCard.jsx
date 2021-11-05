@@ -4,8 +4,11 @@ import Container from "@mui/material/Container";
 import { makeStyles } from "@mui/styles";
 import { Typography } from "@mui/material";
 import { useSelector } from "react-redux";
-import { selectName } from '../features/namecard/nameSlice';
-import { selectQuestions, selectScore } from "../features/questioncard/questionSlice";
+import { selectName } from "../features/namecard/nameSlice";
+import {
+  selectQuestions,
+  selectScore,
+} from "../features/questioncard/questionSlice";
 
 const useStyles = makeStyles({
   container: {
@@ -18,8 +21,8 @@ const useStyles = makeStyles({
     margin: "10% auto",
   },
   textField: {
-    width: "100%"
-  }
+    width: "100%",
+  },
 });
 
 function NameCard(props) {
@@ -30,10 +33,9 @@ function NameCard(props) {
   return (
     <Container className={classes.container}>
       <Card className={classes.card}>
-        <CardContent >
+        <CardContent>
           <Typography variant="h6" gutterBottom component="div">
-            Hi {name},
-            <br></br>
+            Hi {name},<br></br>
             The test is finished.
             <br></br>
             Your result:&nbsp;

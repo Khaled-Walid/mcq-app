@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import NameCard from "./components/NameCard";
 import QuestionCard from "./components/QuestionCard";
 import ResultCard from "./components/ResultCard";
