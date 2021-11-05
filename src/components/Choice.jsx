@@ -8,6 +8,7 @@ function Choice(props) {
       control={<Radio />}
       label={props.value}
       onClick={props.onClick}
+      checked={props.checked}
     />
   );
 }

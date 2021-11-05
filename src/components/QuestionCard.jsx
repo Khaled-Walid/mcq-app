@@ -13,6 +13,7 @@ import {
   incrementScore,
   selectQuestions,
 } from "../features/questioncard/questionSlice";
+import { Button, CardActions } from "@mui/material";
 
 const useStyles = makeStyles({
   container: {
@@ -28,28 +29,38 @@ const useStyles = makeStyles({
 
 function QuestionCard() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [selectedChoice, setSelectedChoice] = useState(null);
   const questions = useSelector(selectQuestions);
   const question = questions[currentQuestionIndex];
-
   const classes = useStyles();
   const dispatch = useDispatch();
+
   const choiceList = question.choices.map((choice) => {
     return (
-      <Choice key={choice} onClick={handleSubmitAnswer} value={choice}></Choice>
+      <Choice
+        key={choice}
+        onClick={handleChoiceClick}
+        value={choice}
+        checked={selectedChoice === choice.toString()}
+      ></Choice>
     );
   });
 
-  function handleSubmitAnswer(e) {
-    if (e.target.value === question.correct.toString()) {
+  function handleNext() {
+    if (selectedChoice === question.correct.toString()) {
       dispatch(incrementScore());
     }
     if (currentQuestionIndex < questions.length - 1) {
+      setSelectedChoice(null);
       setCurrentQuestionIndex((prev) => {
         return prev + 1;
       });
     } else {
       dispatch(gotoResult());
     }
+  }
+  function handleChoiceClick(e) {
+    setSelectedChoice(e.target.value);
   }
   return (
     <Container className={classes.container}>
@@ -70,6 +81,11 @@ function QuestionCard() {
             </RadioGroup>
           </FormControl>
         </CardContent>
+        <CardActions>
+          <Button size="small" onClick={handleNext}>
+            Next
+          </Button>
+        </CardActions>
       </Card>
     </Container>
   );

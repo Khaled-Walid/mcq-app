@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   },
 });
 
-function NameCard(props) {
+function ResultCard() {
   const classes = useStyles();
   const name = useSelector(selectName);
   const score = useSelector(selectScore);
@@ -35,9 +35,9 @@ function NameCard(props) {
       <Card className={classes.card}>
         <CardContent>
           <Typography variant="h6" gutterBottom component="div">
-            Hi {name},<br></br>
+            Hi {name},<br/>
             The test is finished.
-            <br></br>
+            <br/>
             Your result:&nbsp;
             {score} out of {questions.length}
           </Typography>
@@ -47,4 +47,4 @@ function NameCard(props) {
   );
 }
 
-export default NameCard;
+export default ResultCard;
