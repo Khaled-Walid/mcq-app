@@ -6,7 +6,7 @@ import QuestionCard from "./components/QuestionCard";
 import ResultCard from "./components/ResultCard";
 
 function App() {
-  const [currentCard, setCurrentCard] = useState("question");
+  const [currentCard, setCurrentCard] = useState("name");
 
   function cardSwitcher(card) {
     setCurrentCard(card);

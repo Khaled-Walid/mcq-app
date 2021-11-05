@@ -28,13 +28,12 @@ const questions = [
   { question: "5 + 5 + 5 = ?", choices: [1, 15, 40, 200], correct: 15 },
 ];
 
-function shuffle(array) {
-  let currentIndex = array.length;
-  let shuffled = [];
-  while (currentIndex !== 0) {
-    const randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-    shuffled = [...shuffled, array[randomIndex]];
+function shuffle(inputArray) {
+  const array = [...inputArray];
+  const shuffled = [];
+  while (array.length !== 0) {
+    const randomIndex = Math.floor(Math.random() * array.length);
+    shuffled.push(array[randomIndex]);
     array.splice(randomIndex, 1);
   }
   return shuffled;
@@ -46,10 +45,16 @@ const shuffledChoices = shuffledQuestions.map((question) => {
 
 function NameCard(props) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [userResultScore, setUserResultScore] = useState(0);
   const classes = useStyles();
   const choiceList = shuffledChoices[currentQuestionIndex].map((choice) => {
-    return <Choice value={choice}></Choice>;
+    return <Choice key={choice} onClick={submitAnswerHandler} value={choice}></Choice>;
   });
+
+  function submitAnswerHandler (e) {
+    if (e.target.value === shuffledQuestions[currentQuestionIndex].correct) {setUserResultScore((prev)=>{return prev+1})}
+    setCurrentQuestionIndex((prev)=>{return prev+1})
+  }
   return (
     <Container className={classes.container}>
       <Card className={classes.card}>

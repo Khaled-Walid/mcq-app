@@ -7,6 +7,7 @@ function Choice(props) {
         value={props.value}
         control={<Radio />}
         label={props.value}
+        onClick={props.onClick}
       />
   );
 }

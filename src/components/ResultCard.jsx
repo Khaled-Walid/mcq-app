@@ -3,6 +3,8 @@ import CardContent from "@mui/material/CardContent";
 import Container from "@mui/material/Container";
 import { makeStyles } from "@mui/styles";
 import { Typography } from "@mui/material";
+import { useSelector } from "react-redux";
+import { selectName } from '../features/namecard/nameSlice';
 
 const useStyles = makeStyles({
   container: {
@@ -21,12 +23,13 @@ const useStyles = makeStyles({
 
 function NameCard(props) {
   const classes = useStyles();
+  const name = useSelector(selectName);
   return (
     <Container className={classes.container}>
       <Card className={classes.card}>
         <CardContent >
           <Typography variant="h6" gutterBottom component="div">
-            Hi Ahmed,
+            Hi {name},
             <br></br>
             The test is finished.
             <br></br>

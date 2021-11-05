@@ -5,6 +5,8 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
 import { makeStyles } from "@mui/styles";
+import { useDispatch, useSelector } from 'react-redux';
+import { setName, selectName } from '../features/namecard/nameSlice';
 
 const useStyles = makeStyles({
   container: {
@@ -23,6 +25,11 @@ const useStyles = makeStyles({
 
 function NameCard(props) {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const name = useSelector(selectName);
+
+  const handleChange = e => dispatch(setName(e.target.value));
+
   return (
     <Container className={classes.container}>
       <Card className={classes.card}>
@@ -33,6 +40,8 @@ function NameCard(props) {
             variant="outlined"
             placeholder="Enter your name.."
             className={classes.textField}
+            onChange={handleChange}
+            value={name}
           />
         </CardContent>
         <CardActions>
