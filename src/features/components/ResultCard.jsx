@@ -4,11 +4,11 @@ import Container from "@mui/material/Container";
 import { makeStyles } from "@mui/styles";
 import { Typography } from "@mui/material";
 import { useSelector } from "react-redux";
-import { selectName } from "../features/namecard/nameSlice";
+import { selectName } from "../slices/nameSlice";
 import {
   selectQuestions,
   selectScore,
-} from "../features/questioncard/questionSlice";
+} from "../slices/questionSlice";
 
 const useStyles = makeStyles({
   container: {

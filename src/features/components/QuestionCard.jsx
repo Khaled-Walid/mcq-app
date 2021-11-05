@@ -8,11 +8,11 @@ import FormLabel from "@mui/material/FormLabel";
 import Choice from "./Choice";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { gotoResult } from "../features/cardSwitcherSlice";
+import { gotoResult } from "../slices/cardSwitcherSlice";
 import {
   incrementScore,
   selectQuestions,
-} from "../features/questioncard/questionSlice";
+} from "../slices/questionSlice";
 import { Button, CardActions } from "@mui/material";
 
 const useStyles = makeStyles({

@@ -6,9 +6,9 @@ import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
 import { makeStyles } from "@mui/styles";
 import { useDispatch, useSelector } from "react-redux";
-import { setName, selectName } from "../features/namecard/nameSlice";
-import { gotoQuestion } from "../features/cardSwitcherSlice";
-import { shuffleQuestions } from "../features/questioncard/questionSlice";
+import { setName, selectName } from "../slices/nameSlice";
+import { gotoQuestion } from "../slices/cardSwitcherSlice";
+import { shuffleQuestions } from "../slices/questionSlice";
 
 const useStyles = makeStyles({
   container: {

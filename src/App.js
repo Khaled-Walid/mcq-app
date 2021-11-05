@@ -1,9 +1,9 @@
 import React from "react";
-import NameCard from "./components/NameCard";
-import QuestionCard from "./components/QuestionCard";
-import ResultCard from "./components/ResultCard";
+import NameCard from "./features/components/NameCard";
+import QuestionCard from "./features/components/QuestionCard";
+import ResultCard from "./features/components/ResultCard";
 import { useSelector } from 'react-redux';
-import { selectCurrentCard } from './features/cardSwitcherSlice';
+import { selectCurrentCard } from './features/slices/cardSwitcherSlice';
 
 function App() {
   const currentCard = useSelector(selectCurrentCard);
