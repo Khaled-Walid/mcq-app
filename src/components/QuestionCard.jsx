@@ -6,6 +6,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Choice from "./Choice";
+import { useState } from "react";
 
 const useStyles = makeStyles({
   container: {
@@ -27,9 +28,26 @@ const questions = [
   { question: "5 + 5 + 5 = ?", choices: [1, 200, 15, 40], correct: 15 },
 ];
 
+function shuffle(array) {
+  let currentIndex = array.length;
+  let shuffled = [];
+  while (currentIndex !== 0) {
+    const randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    shuffled = [...shuffled, array[randomIndex]];
+    array.splice(randomIndex, 1);
+  }
+  return shuffled;
+}
+const shuffledQuestions = shuffle(questions);
+const shuffledChoices = shuffledQuestions.map((question) => {
+  return shuffle(question.choices);
+});
+
 function NameCard(props) {
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const classes = useStyles();
-  const choiceList = questions[0].choices.map((choice) => {
+  const choiceList = shuffledChoices[currentQuestionIndex].map((choice) => {
     return <Choice value={choice}></Choice>;
   });
   return (
@@ -44,7 +62,7 @@ function NameCard(props) {
                 color: "black",
               }}
             >
-              {questions[0].question}
+              {shuffledQuestions[currentQuestionIndex].question}
             </FormLabel>
             <RadioGroup aria-label="question" name="radio-buttons-group">
               {choiceList}
