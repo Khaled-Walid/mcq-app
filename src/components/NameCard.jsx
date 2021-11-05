@@ -8,6 +8,7 @@ import { makeStyles } from "@mui/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { setName, selectName } from "../features/namecard/nameSlice";
 import { gotoQuestion } from "../features/cardSwitcherSlice";
+import { shuffleQuestions } from "../features/questioncard/questionSlice";
 
 const useStyles = makeStyles({
   container: {
@@ -30,7 +31,10 @@ function NameCard(props) {
   const name = useSelector(selectName);
 
   const handleChange = (e) => dispatch(setName(e.target.value));
-  const handleClick = () => dispatch(gotoQuestion());
+  const handleClick = () => {
+    dispatch(shuffleQuestions());
+    dispatch(gotoQuestion());
+  };
 
   return (
     <Container className={classes.container}>

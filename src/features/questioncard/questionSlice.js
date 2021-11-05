@@ -11,6 +11,17 @@ const initialState = {
   ],
 };
 
+function shuffle(inputArray) {
+  const array = [...inputArray];
+  const shuffled = [];
+  while (array.length !== 0) {
+    const randomIndex = Math.floor(Math.random() * array.length);
+    shuffled.push(array[randomIndex]);
+    array.splice(randomIndex, 1);
+  }
+  return shuffled;
+}
+
 export const questionSlice = createSlice({
   name: "questionCard",
   initialState,
@@ -19,10 +30,20 @@ export const questionSlice = createSlice({
     incrementScore(state) {
       state.score += 1;
     },
+    shuffleQuestions(state) {
+      const shuffledQuestions = shuffle(state.questions);
+      const shuffledChoices = shuffledQuestions.map((question) => {
+        return {
+          ...question,
+          choices: shuffle(question.choices),
+        };
+      });
+      state.questions = shuffledChoices;
+    },
   },
 });
 
-export const { incrementScore } = questionSlice.actions;
+export const { incrementScore, shuffleQuestions } = questionSlice.actions;
 
 export const selectScore = (state) => state.questionCard.score;
 
