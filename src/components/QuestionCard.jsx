@@ -25,7 +25,7 @@ const questions = [
   { question: "2 + 2 + 2 = ?", choices: [2, 4, 6, 8], correct: 6 },
   { question: "3 + 3 + 3 = ?", choices: [9, 18, 20, 22], correct: 9 },
   { question: "4 + 4 + 4 = ?", choices: [10, 12, 13, 14], correct: 12 },
-  { question: "5 + 5 + 5 = ?", choices: [1, 200, 15, 40], correct: 15 },
+  { question: "5 + 5 + 5 = ?", choices: [1, 15, 40, 200], correct: 15 },
 ];
 
 function shuffle(array) {
