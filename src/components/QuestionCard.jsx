@@ -6,9 +6,10 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Choice from "./Choice";
-import { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useState, useRef } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import { gotoResult } from "../features/cardSwitcherSlice";
+import { incrementScore, selectQuestions } from '../features/questioncard/questionSlice';
 
 const useStyles = makeStyles({
   container: {
@@ -22,14 +23,6 @@ const useStyles = makeStyles({
   },
 });
 
-const questions = [
-  { question: "1 + 1 + 1 = ?", choices: [1, 2, 3, 4], correct: 3 },
-  { question: "2 + 2 + 2 = ?", choices: [2, 4, 6, 8], correct: 6 },
-  { question: "3 + 3 + 3 = ?", choices: [9, 18, 20, 22], correct: 9 },
-  { question: "4 + 4 + 4 = ?", choices: [10, 12, 13, 14], correct: 12 },
-  { question: "5 + 5 + 5 = ?", choices: [1, 15, 40, 200], correct: 15 },
-];
-
 function shuffle(inputArray) {
   const array = [...inputArray];
   const shuffled = [];
@@ -40,14 +33,17 @@ function shuffle(inputArray) {
   }
   return shuffled;
 }
-const shuffledQuestions = shuffle(questions);
-const shuffledChoices = shuffledQuestions.map((question) => {
-  return shuffle(question.choices);
-});
 
-function NameCard(props) {
+function QuestionCard(props) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [userResultScore, setUserResultScore] = useState(0);
+  const questions = useSelector(selectQuestions);
+  const shuffledQuestionsRef = useRef(shuffle(questions));
+  const shuffledQuestions = shuffledQuestionsRef.current;
+  const shuffledChoicesRef = useRef(shuffledQuestions.map((question) => {
+    return shuffle(question.choices);
+  }));
+  const shuffledChoices = shuffledChoicesRef.current;
+
   const classes = useStyles();
   const dispatch = useDispatch();
   const choiceList = shuffledChoices[currentQuestionIndex]?.map((choice) => {
@@ -61,10 +57,8 @@ function NameCard(props) {
   });
 
   function submitAnswerHandler(e) {
-    if (e.target.value === shuffledQuestions[currentQuestionIndex].correct) {
-      setUserResultScore((prev) => {
-        return prev + 1;
-      });
+    if (e.target.value === shuffledQuestions[currentQuestionIndex].correct.toString()) {
+      dispatch(incrementScore());
     }
     if (currentQuestionIndex < shuffledQuestions.length - 1) {
       setCurrentQuestionIndex((prev) => {
@@ -98,4 +92,4 @@ function NameCard(props) {
   );
 }
 
-export default NameCard;
+export default QuestionCard;
